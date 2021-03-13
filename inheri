@@ -1,0 +1,44 @@
+class A;
+  
+  int i;
+  
+  function new(int k);
+    i=k;
+  endfunction
+  
+  function void display();
+    $display("i=%0d",i);
+    $display("Inside A");
+  endfunction
+  
+endclass
+
+class B extends A;
+  
+  function new(int k);
+    super.new(10);
+  endfunction
+  
+  function void display();
+    $display("i=%0d",i);
+    $display("Inside B");
+  endfunction
+  
+endclass
+
+module inheritancee;
+  
+  initial begin
+  A a;
+  B b;
+  a=new(10);
+  a.display();
+  b=new(20);
+  b.display();
+  b=new(70);
+  a=new(40);
+  $cast(a,b);
+  a.display();
+  end
+  
+endmodule
